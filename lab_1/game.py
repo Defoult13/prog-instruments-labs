@@ -18,7 +18,8 @@ BRIGHT_BLUE = (0, 0, 255)
 DISPLAY_WIDTH = 800
 DISPLAY_HEIGHT = 600
 
-
+# Размеры машины
+CAR_WIDTH = 56
 
 gamedisplays = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 pygame.display.set_caption("car game")
@@ -29,7 +30,6 @@ yellow_strip = pygame.image.load("yellow strip.jpg")
 strip = pygame.image.load("strip.jpg")
 intro_background = pygame.image.load("background.jpg")
 instruction_background = pygame.image.load("background2.jpg")
-car_width = 56
 pause = False
 
 def intro_loop():
@@ -359,9 +359,9 @@ def game_loop():
         obs_starty += obstacle_speed
         car(x, y)
         score_system(passed, score)
-        if x > 690-car_width or x < 110:
+        if x > 690-CAR_WIDTH or x < 110:
             crash()
-        if x > DISPLAY_WIDTH - (car_width + 110) or x < 110:
+        if x > DISPLAY_WIDTH - (CAR_WIDTH + 110) or x < 110:
             crash()
         if obs_starty > DISPLAY_HEIGHT:
             obs_starty = 0-obs_height
@@ -381,7 +381,7 @@ def game_loop():
 
 
         if y < obs_starty + obs_height:
-            if x > obs_startx and x < obs_startx + obs_width or x + car_width > obs_startx and x + car_width < obs_startx + obs_width:
+            if x > obs_startx and x < obs_startx + obs_width or x + CAR_WIDTH > obs_startx and x + CAR_WIDTH < obs_startx + obs_width:
                 crash()
         button("Pause", 650, 0, 150, 50, BLUE, BRIGHT_BLUE, "pause")
         pygame.display.update()
