@@ -93,7 +93,8 @@ def introduction():
         largetext = pygame.font.Font('freesansbold.ttf', 80)
         smalltext = pygame.font.Font('freesansbold.ttf', 20)
         mediumtext = pygame.font.Font('freesansbold.ttf', 40)
-        textSurf, textRect = text_objects("This is a car game in which you need to dodge the coming cars", smalltext)
+        textSurf, textRect = text_objects(
+            "This is a car game in which you need to dodge the coming cars", smalltext)
         textRect.center = (350, 200)
         TextSurf, TextRect = text_objects("INSTRUCTION", largetext)
         TextRect.center = (400, 100)
@@ -381,7 +382,8 @@ def game_loop():
                 time.sleep(3)
 
         if y < obs_starty + obs_height:
-            if x > obs_startx and x < obs_startx + obs_width or x + CAR_WIDTH > obs_startx and x + CAR_WIDTH < obs_startx + obs_width:
+            if (x > obs_startx and x < obs_startx + obs_width) or \
+            (x + CAR_WIDTH > obs_startx and x + CAR_WIDTH < obs_startx + obs_width):
                 crash()
         button("Pause", 650, 0, 150, 50, BLUE, BRIGHT_BLUE, "pause")
         pygame.display.update()
