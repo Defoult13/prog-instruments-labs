@@ -1,6 +1,7 @@
 import pygame
 import time
 import random
+from typing import Tuple
 
 pygame.init()
 
@@ -33,7 +34,8 @@ instruction_background = pygame.image.load("background2.jpg")
 pause = False
 
 
-def intro_loop():
+def intro_loop() -> None:
+    """Display the introduction screen and handle user input to start the game or quit.""" 
     intro = True
     while intro:
         for event in pygame.event.get():
@@ -53,7 +55,8 @@ def intro_loop():
         clock.tick(50)
 
 
-def button(msg, x, y, w, h, ic, ac, action=None):
+def button(msg, x, y, w, h, ic, ac, action=None) -> None:
+    """Create a button with a given message and handle actions on click."""
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
     if x + w > mouse[0]> x and y + h > mouse[1] > y:
@@ -81,7 +84,8 @@ def button(msg, x, y, w, h, ic, ac, action=None):
     gamedisplays.blit(textsurf, textrect)
 
 
-def introduction():
+def introduction() -> None:
+    """Display the instructions for the game."""
     introduction = True
     while introduction:
         for event in pygame.event.get():
@@ -123,7 +127,8 @@ def introduction():
         clock.tick(30)
 
 
-def paused():
+def paused() -> None:
+    """Display the paused screen and handle user input to continue or restart."""
     global pause
 
     while pause:
@@ -144,12 +149,14 @@ def paused():
             clock.tick(30)
 
 
-def unpaused():
+def unpaused() -> None:
+    """Resume the game by unpausing."""
     global pause
     pause = False
 
 
-def countdown_background():
+def countdown_background() -> None:
+    """Render the background for the countdown screen."""
     font = pygame.font.SysFont(None, 25)
     x = (DISPLAY_WIDTH * 0.45)
     y = (DISPLAY_HEIGHT * 0.8)
@@ -181,7 +188,8 @@ def countdown_background():
     button("PAUSE", 650, 0, 150, 50, BLUE, BRIGHT_BLUE, "pause")
 
 
-def countdown():
+def countdown() -> None:
+    """Display a countdown before starting the game."""
     countdown = True
 
     while countdown:
@@ -225,7 +233,8 @@ def countdown():
             game_loop()
 
 
-def obstacle(obs_startx, obs_starty, obs):
+def obstacle(obs_startx, obs_starty, obs) -> None:
+    """Draw an obstacle at the specified position."""
     if obs == 0:
         obs_pic=pygame.image.load("car.jpg")
     elif obs == 1:
@@ -243,7 +252,8 @@ def obstacle(obs_startx, obs_starty, obs):
     gamedisplays.blit(obs_pic, (obs_startx, obs_starty))
 
 
-def score_system(passed, score):
+def score_system(passed, score) -> None:
+    """Display the score and the number of passed obstacles."""
     font = pygame.font.SysFont(None, 25)
     text = font.render("Passed" + str(passed), True, BLACK)
     score = font.render("Score" + str(score), True, RED)
@@ -251,12 +261,14 @@ def score_system(passed, score):
     gamedisplays.blit(score, (0, 30))
 
 
-def text_objects(text, font):
+def text_objects(text, font) -> Tuple[pygame.Surface, pygame.Rect]:
+    """Render text and return the surface and its rectangle."""
     textsurface = font.render(text, True, BLACK)
     return textsurface, textsurface.get_rect()
 
 
-def message_display(text):
+def message_display(text) -> None:
+    """Display a message on the screen for a few seconds."""
     largetext = pygame.font.Font("freesansbold.ttf", 80)
     textsurf, textrect = text_objects(text, largetext)
     textrect.center = ((DISPLAY_WIDTH / 2), (DISPLAY_HEIGHT / 2))
@@ -266,11 +278,13 @@ def message_display(text):
     game_loop()
 
 
-def crash():
+def crash() -> None:
+    """Display a crash message and restart the game."""
     message_display("YOU CRASHED")
 
 
-def background():
+def background() -> None:
+    """Render the background of the game."""
     gamedisplays.blit(backgroundpic, (0, 0))
     gamedisplays.blit(backgroundpic, (0, 200))
     gamedisplays.blit(backgroundpic, (0, 400))
@@ -291,11 +305,13 @@ def background():
     gamedisplays.blit(strip, (680, 200))
 
 
-def car(x, y):
+def car(x, y) -> None:
+    """Draw the player's car at the specified position."""
     gamedisplays.blit(carimg, (x, y))
 
 
-def game_loop():
+def game_loop() -> None:
+    """Main game loop that handles user input and updates game state."""
     global pause
     x = (DISPLAY_WIDTH * 0.45)
     y = (DISPLAY_HEIGHT * 0.8)
