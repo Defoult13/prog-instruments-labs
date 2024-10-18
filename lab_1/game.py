@@ -301,7 +301,6 @@ def game_loop():
     x_change = 0
     obstacle_speed = 9
     obs = 0
-    y_change = 0
     obs_startx = random.randrange(200, (DISPLAY_WIDTH - 200))
     obs_starty = -750
     obs_width = 56
@@ -310,7 +309,6 @@ def game_loop():
     level = 0
     score = 0
     y2 = 7
-    fps = 120
 
     bumped = False
     while not bumped:
@@ -389,7 +387,7 @@ def game_loop():
         pygame.display.update()
         clock.tick(60)
 
-        
+
 intro_loop()
 game_loop()
 pygame.quit()
