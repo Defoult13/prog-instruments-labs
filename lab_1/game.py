@@ -1,7 +1,8 @@
-import pygame
 import time
 import random
 from typing import Tuple
+
+import pygame
 
 pygame.init()
 
