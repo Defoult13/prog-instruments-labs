@@ -32,8 +32,6 @@ def check_row_patterns(row: List[str], row_number: int) -> bool:
     for i, value in enumerate(row):
         field_name = list(patterns.keys())[i]
         if not re.match(patterns[field_name], value):
-            print(f"Row {row_number}, Field '{field_name}':
-                   Value '{value}' doesn't match the pattern.")
             return True
     return False
 
