@@ -37,6 +37,25 @@ def check_row_patterns(row: List[str], row_number: int) -> bool:
             return True
     return False
 
+
+def determine_encoding(file_path: str) -> str:
+    """
+    Defines the file encoding.
+
+    :param file_path: Path to the file.
+    :return: File encoding.
+    """
+    try:
+        with open(file_path, 'rb') as f:
+            raw_data = f.read()
+            result = chardet.detect(raw_data)
+            encoding = result['encoding']
+        return encoding
+    except Exception as e:
+        print(f"Error in determining the encoding of the file {file_path}: {e}")
+        raise
+
+
 def calculate_checksum(row_numbers: List[int]) -> str:
     """
     Вычисляет md5 хеш от списка целочисленных значений.
