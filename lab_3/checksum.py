@@ -100,15 +100,25 @@ def serialize_result(variant: int, checksum: str) -> None:
     try:
         with open('lab_3/result.json', 'r', encoding='utf-8') as json_file:
             result_data: Dict[str, Any] = json.load(json_file)
-    except FileNotFoundError:
-        result_data = {"variant": variant, "checksum": checksum}
+    except OSError as er: 
+        raise OSError(f"Error occured during serializing the result: {er}")
 
     result_data['checksum'] = checksum
-    
     with open('lab_3/result.json', 'w', encoding='utf-8') as json_file:
         json.dump(result_data, json_file, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
-    print(calculate_checksum([1, 2, 3]))
-    print(calculate_checksum([3, 2, 1]))
+    try:
+        with open("lab_3/config.json", "r", encoding='utf-8') as config_file:
+            config = json.load(config_file)
+
+        invalid_row_numbers = process_csv(config["csv_path"])
+        checksum = calculate_checksum(invalid_row_numbers)
+        var = 51
+        serialize_result(var, checksum)
+
+    except FileNotFoundError:
+        print("The file config.json was not found.")
+    except Exception as e:
+        print(f"Error: {e}")
