@@ -1,11 +1,41 @@
-import json
+import csv
 import hashlib
-from typing import List
+import json
+import re
+from typing import Any, Dict, List
 
-"""
-В этом модуле обитают функции, необходимые для автоматизированной проверки результатов ваших трудов.
-"""
+import chardet
 
+
+patterns: Dict[str, str] = {
+    'email': r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
+    'height': r'^"?\d+(\.\d+)?"?$',
+    'snils': r'^"?\d{11}"?$',
+    'passport': r'^"?\d{2}\s\d{2}\s\d{6}"?$',
+    'occupation': r'^.+$',
+    'longitude': r'^-?\d+(\.\d+)?$',
+    'hex_color': r'^#(?:[0-9a-fA-F]{3}){1,2}$',
+    'issn': r'^\d{4}-\d{4}$',
+    'locale_code': r'^[a-z]{2}-[a-z]{2}$',
+    'time': r'^\d{2}:\d{2}:\d{2}(\.\d+)?$'
+}
+
+
+def check_row_patterns(row: List[str], row_number: int) -> bool:
+    """
+    Checks a string for compliance with the patterns.
+
+    :param row: List of row values.
+    :param row_number: Row number in the CSV file.
+    :return: True if an error was found, False otherwise.
+    """
+    for i, value in enumerate(row):
+        field_name = list(patterns.keys())[i]
+        if not re.match(patterns[field_name], value):
+            print(f"Row {row_number}, Field '{field_name}':
+                   Value '{value}' doesn't match the pattern.")
+            return True
+    return False
 
 def calculate_checksum(row_numbers: List[int]) -> str:
     """
