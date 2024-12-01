@@ -8,16 +8,16 @@ import chardet
 
 
 patterns: Dict[str, str] = {
-    'email': r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
-    'height': r'^"?\d+(\.\d+)?"?$',
-    'snils': r'^"?\d{11}"?$',
-    'passport': r'^"?\d{2}\s\d{2}\s\d{6}"?$',
-    'occupation': r'^.+$',
-    'longitude': r'^-?\d+(\.\d+)?$',
-    'hex_color': r'^#(?:[0-9a-fA-F]{3}){1,2}$',
-    'issn': r'^\d{4}-\d{4}$',
-    'locale_code': r'^[a-z]{2}-[a-z]{2}$',
-    'time': r'^\d{2}:\d{2}:\d{2}(\.\d+)?$'
+    'email': r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    'height': r'^[0-2]\.\d{2}$',
+    'snils': r'^\d{11}$',
+    'passport': r'^\d{2} \d{2} \d{6}$',
+    'occupation': r'[a-zA-Zа-яА-ЯёЁ -]+',
+    'longitude': r'^\-?(180|1[0-7][0-9]|\d{1,2})\.\d+$',
+    'hex_color': r'^#[A-Fa-f0-9]{6}$',
+    'issn': r'^\d{4}\-\d{4}$',
+    'locale_code': r'^[a-zA-Z]+(-[a-zA-Z]+)*$',
+    'time': r'^\d{2}:\d{2}:\d{2}\.\d{6}$'
 }
 
 
