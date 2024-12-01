@@ -56,6 +56,29 @@ def determine_encoding(file_path: str) -> str:
         raise
 
 
+def process_csv(file_path: str) -> List[int]:
+    """
+    Processes a CSV file and returns line numbers with errors.
+
+    :param file_path: Path to the CSV file.
+    :return: List of line numbers with errors.
+    """
+    invalid_rows: List[int] = []
+    try:
+        encoding = determine_encoding(file_path)
+        with open(file_path, newline='', encoding=encoding) as csv_file:
+            reader = csv.reader(csv_file, delimiter=';')
+            next(reader)
+            for row_number, row in enumerate(reader):
+                if check_row_patterns(row, row_number):
+                    invalid_rows.append(row_number)
+    except FileNotFoundError:
+        print(f"The file was not found: {file_path}")
+    except Exception as e:
+        print(f"Error reading the file: {e}")
+    return invalid_rows
+
+
 def calculate_checksum(row_numbers: List[int]) -> str:
     """
     Вычисляет md5 хеш от списка целочисленных значений.
