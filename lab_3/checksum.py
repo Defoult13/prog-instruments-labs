@@ -17,7 +17,7 @@ patterns: Dict[str, str] = {
     'hex_color': r'^#[A-Fa-f0-9]{6}$',
     'issn': r'^\d{4}\-\d{4}$',
     'locale_code': r'^[a-zA-Z]+(-[a-zA-Z]+)*$',
-    'time': r'^\d{2}:\d{2}:\d{2}\.\d{6}$'
+    'time': r'^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)\.(\d{1,6})$'
 }
 
 
