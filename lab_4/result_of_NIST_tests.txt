@@ -1,0 +1,10 @@
+Generator: cpp
+Bit Frequency Test P-value: 0.2888443663464849
+Consecutive Bit Test P-value: 0.6637700912920717
+Longest Run of Ones Test P-value: 0.7843046841167867
+
+Generator: java
+Bit Frequency Test P-value: 0.11161176829829222
+Consecutive Bit Test P-value: 0.9617930523408253
+Longest Run of Ones Test P-value: 0.39173926585761465
+
