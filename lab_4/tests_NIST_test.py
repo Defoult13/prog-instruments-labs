@@ -1,8 +1,14 @@
-import pytest
 import json
 from unittest.mock import mock_open, patch
-from NIST_test import (bit_frequency_test,
-                       consecutive_bit_test, longest_run_of_ones_test)
+
+import pytest
+
+from NIST_test import (
+    bit_frequency_test,
+    consecutive_bit_test,
+    longest_run_of_ones_test,
+)
+
 
 def test_reading():
     mock_data = '{"cpp": "10110101101100010110001011101110011011111100111110000101010100010001110100111001110000011011011001011100011101110001111111000100"}'
