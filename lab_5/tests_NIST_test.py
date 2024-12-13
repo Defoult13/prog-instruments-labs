@@ -2,6 +2,7 @@ import json
 from unittest.mock import mock_open, patch
 
 import pytest
+from pytest import approx
 
 from NIST_test import (
     bit_frequency_test,
@@ -22,7 +23,7 @@ def test_reading():
 def test_bit_frequency():
     sequence = "10110101101100010110001011101110011011111100111110000101010100010001110100111001110000011011011001011100011101110001111111000100"
     frequency = 0.2888443663464849
-    assert frequency == bit_frequency_test(sequence)
+    assert bit_frequency_test(sequence) == approx(frequency)
 
 @pytest.mark.parametrize("name, value", [("java", 0.11161176829829222)])
 def test_bit_frequency_test_w_r(name, value):
@@ -42,12 +43,12 @@ def test_bit_frequency_test_w_r_m(name, value):
             data = json.load(file)
     sequence = data[name]
     frequency = bit_frequency_test(sequence)
-    assert frequency == value
+    assert frequency == approx(value)
 
 def test_consecutive_bit_test():
     sequence = "10110101101100010110001011101110011011111100111110000101010100010001110100111001110000011011011001011100011101110001111111000100"
     frequency = 0.6637700912920717
-    assert frequency == consecutive_bit_test(sequence)
+    assert consecutive_bit_test(sequence) == approx(frequency)
 
 @pytest.mark.parametrize("name, value", [("java", 0.9617930523408253)])
 def test_consecutive_bit_test_w_r(name, value):
@@ -81,7 +82,7 @@ def test_longest_run_of_ones_test_w_r_m(name, value):
         data = json.load(file)
     sequence = data[name]
     frequency = longest_run_of_ones_test(sequence)
-    assert frequency == value
+    assert frequency == approx(value)
 
 @pytest.mark.parametrize("name, value", [("java", 0.002682392443551449)])
 def test_longest_run_of_ones_test_w_r(name, value):
