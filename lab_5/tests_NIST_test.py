@@ -26,7 +26,7 @@ def test_bit_frequency():
 
 @pytest.mark.parametrize("name, value", [("java", 0.11161176829829222)])
 def test_bit_frequency_test_w_r(name, value):
-    file_path = "K:/Pyth/TMP/prog-instruments-labs/lab_4/gen_results.json"
+    file_path = "K:/Pyth/TMP/prog-instruments-labs/lab_5/gen_results.json"
     with open(file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
     sequence = data[name]
@@ -51,7 +51,7 @@ def test_consecutive_bit_test():
 
 @pytest.mark.parametrize("name, value", [("java", 0.9617930523408253)])
 def test_consecutive_bit_test_w_r(name, value):
-    file_path = "K:/Pyth/TMP/prog-instruments-labs/lab_4/gen_results.json"
+    file_path = "K:/Pyth/TMP/prog-instruments-labs/lab_5/gen_results.json"
     with open(file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
     sequence = data[name]
@@ -76,7 +76,7 @@ def test_longest_run_of_ones_test():
 
 @pytest.mark.parametrize("name, value", [("java", 0.39173926585761465)])
 def test_longest_run_of_ones_test_w_r_m(name, value):
-    file_path = "K:/Pyth/TMP/prog-instruments-labs/lab_4/gen_results.json"
+    file_path = "K:/Pyth/TMP/prog-instruments-labs/lab_5/gen_results.json"
     with open(file_path, "r", encoding="utf-8") as file:
         data = json.load(file)
     sequence = data[name]
